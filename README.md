@@ -1,16 +1,16 @@
 DragToDetail
 =
-一个用以实现拖拉查看更多内容的自定义控件（可以实现如电商应用详情页面，拖拉查看商品详情描述），<br>继承自LinearLayout
+一个用以实现拖拉查看更多内容的自定义控件（可以实现如电商应用详情页面，拖拉查看商品详情描述），继承自LinearLayout
 -----------
 
 特性
 =
-###1.支持大于两个子页面<br>
-###2.支持竖向拖拉，支持横向拖拉<br>
-###3.支持常见的ListView、ScrollView、HorizontalScrollView、NestedScrollView、RecyclerView、ViewPager、WebView等控件的组合使用（详情看下面效果图）<br>
-###4.支持页面进入监听、支持滚动监听（仅仅监听第一个页面，详细说明请看使用介绍）<br>
-###5.支持跳转到指定页面<br>
-###6.更多特性<br>
+1.支持大于两个子页面<br>
+2.支持竖向拖拉，支持横向拖拉<br>
+3.支持常见的ListView、ScrollView、HorizontalScrollView、NestedScrollView、RecyclerView、ViewPager、WebView等控件的组合使用（详情看下面效果图）<br>
+4.支持页面进入监听、支持滚动监听（仅仅监听第一个页面，详细说明请看使用介绍）<br>
+5.支持跳转到指定页面<br>
+6.更多特性<br>
 <br>
 
 1.效果图1
@@ -19,19 +19,19 @@ DragToDetail
 
 ---------
 
-###2.效果图2
+2.效果图2
 <br>
 ![DragToDetail](https://github.com/workdawn/DragToDetail/blob/master/gif/4.gif)
 
 ---------
 
-###3.效果图3
+3.效果图3
 <br>
 ![DragToDetail](https://github.com/workdawn/DragToDetail/blob/master/gif/2.gif)
 
 ---------
 
-###4.效果图4
+4.效果图4
 <br>
 ![DragToDetail](https://github.com/workdawn/DragToDetail/blob/master/gif/3.gif)
 
@@ -40,7 +40,7 @@ DragToDetail
 
 使用说明
 -------
-###1.相关属性
+1.相关属性
 ```
         <declare-styleable name="DragToDetailLayout">
            <!-- 拖拽阻尼系数 -->
@@ -55,13 +55,13 @@ DragToDetail
            <attr name="reboundPercent" format="float"/>
        </declare-styleable>
 ```
-####(1).dragDamp：拖拽阻尼系数，表示拖拉布局的阻力大小（0.0f - 1.0f）之间，越小阻力越小，说明越容易拖拽
-####(2).introLayout：以方法一（详情请看使用DragToDetail的两种方法）使用控件时候的第一页布局文件引用，<br>它表示一个layout文件
-####(3).detailLayout：以方法一（详情请看使用DragToDetail的两种方法）使用控件时候的第二页布局文件引用，<br>它表示一个layout文件
-####(4).reboundDuration：拖动放手后布局得回弹或者跳转到下一页的持续时间，单位毫秒
-####(5).reboundPercent：跳转到下一页所需要的拖动临界距离百分比，值越大说明需要拖动更多距离才能出发跳转下一页
-###2.两种使用方法
-####(1).通过introLayout、detailLayout属性来配置相关页面，这种方式只支持两个页面，同时优先级更高（意味着如果同时配置了这两个页面属性和自定义布局子节点，那么控件会忽略布局子节点）<br>，这两个布局属性只有都配置才有效，只配置其中一个的话控件会认为没有该属性
+(1.1).dragDamp：拖拽阻尼系数，表示拖拉布局的阻力大小（0.0f - 1.0f）之间，越小阻力越小，说明越容易拖拽<br>
+(1.2).introLayout：以方法一（详情请看使用DragToDetail的两种方法）使用控件时候的第一页布局文件引用，它表示一个layout文件<br>
+(1.3).detailLayout：以方法一（详情请看使用DragToDetail的两种方法）使用控件时候的第二页布局文件引用，它表示一个layout文件<br>
+(1.4).reboundDuration：拖动放手后布局得回弹或者跳转到下一页的持续时间，单位毫秒<br>
+(5).reboundPercent：跳转到下一页所需要的拖动临界距离百分比，值越大说明需要拖动更多距离才能出发跳转下一页<br>
+2.两种使用方法
+(2.1).通过introLayout、detailLayout属性来配置相关页面，这种方式只支持两个页面，同时优先级更高（意味着如果同时配置了这两个页面属性和自定义布局子节点，那么控件会忽略布局子节点），这两个布局属性只有都配置才有效，只配置其中一个的话控件会认为没有该属性
 ```
         <com.workdawn.dragtodetaillayout.DragToDetailLayout
            android:layout_width="match_parent"
@@ -70,7 +70,7 @@ DragToDetail
            app:detailLayout="@layout/detail_layout"
            app:introLayout="@layout/intro_layout" />           
 ```
-####(2).通过自定义子布局节点，跟使用普通的LinearLayout一样
+2.2).通过自定义子布局节点，跟使用普通的LinearLayout一样
 ```
         <com.workdawn.dragtodetaillayout.DragToDetailLayout
            android:id="@+id/dd_test"
@@ -93,17 +93,21 @@ DragToDetail
 ```
 android:orientation="vertical"
 ````
-##同时内部的子布局也要设置为垂直方向排列（详细使用方法可以下载demo查看）
+同时内部的子布局也要设置为垂直方向排列（详细使用方法可以下载demo查看）
+-
 2.如果需要一个水平方向的拖拉效果那么同理需要设置布局的方向
 -
 ```
 android:orientation="horizontal"
 ```
-##当前水平方向的拖拽支持HorizontalScrollView、RecyclerView（布局方向水平）、ViewPager等的组合，其他垂直方向特性的控件如：ScrollView、ListView不支持，
-##如果组合中有ViewPager + Fragment的话，要想成功的拖拽那么ViewPager得Fragment适配器必须继承自，这里给出的DragFragmentPagerAdapter或者DragFragmentStatePagerAdapter<br>（主要是为了能获取到当前Fragment里面的控件）,ScrollViewAndViewPager页面演示的就是这种情况
-3.布局进入监听
+当前水平方向的拖拽支持HorizontalScrollView、RecyclerView（布局方向水平）、ViewPager等的组合，其他垂直方向特性的控件如：ScrollView、ListView不支持，
 -
-####如果想监听进入某个页面得事件可以通过设置EnterDetailLayoutListener监听器来实现
+如果组合中有ViewPager + Fragment的话，要想成功的拖拽那么ViewPager得Fragment适配器必须继承自，这里给出的DragFragmentPagerAdapter或者DragFragmentStatePagerAdapter<br>（主要是为了能获取到当前Fragment里面的控件）,ScrollViewAndViewPager页面演示的就是这种情况
+-
+<br>
+
+3.布局进入监听<br>
+如果想监听进入某个页面得事件可以通过设置EnterDetailLayoutListener监听器来实现
 ```
         dragToDetailLayout.setOnEnterDetailLayoutListener(new DragToDetailLayout.EnterDetailLayoutListener() {
             @Override
@@ -112,9 +116,12 @@ android:orientation="horizontal"
             }
         });
 ```
-####通过该功能可以实现类似于懒加载的需求，当进入页面得时候才初始化相关布局控件，加载网络数据等等（可以看demo中的ScrollViewAndViewPager页面）
-4.页面滚动监听，控件默认提供了对第一个页面的滚动监听，如需要监听其余页面可以通过控件提供的getTargetView(int id)方法获取到你想要监听滑动的控件来自行添加监听
--
+通过该功能可以实现类似于懒加载的需求，当进入页面得时候才初始化相关布局控件，加载网络数据等等（可以看demo中的ScrollViewAndViewPager页面）
+<br>
+
+4.页面滚动监听<br>
+控件默认提供了对第一个页面的滚动监听，如需要监听其余页面可以通过控件提供的getTargetView(int id)方法获取到你想要监听滑动的控件来自行添加监听
+
 ```
         dragToDetailLayout.setOnDragScrollListener(new DragToDetailLayout.DragScrollListener() {
             @Override
@@ -123,12 +130,18 @@ android:orientation="horizontal"
             }
         });
 ```
-###有关滑动监听重要说明（因为View的OnScrollChangeListener监听器是在Android的M版本后才加入的所以如果想进行相关全版本的滚动监听那么）
-####(1).用CanListenerScrollView代替ScrollView
-####(2）.用CanListenerHorizontalScrollView代替HorizontalScrollView
-####(3）.用CanListenerNestScrollView代替NestScrollView
-5.跳转到特定页面，详细请查看SelectItemActivity
+有关滑动监听重要说明（因为View的OnScrollChangeListener监听器是在Android的M版本后才加入的所以如果想进行相关全版本的滚动监听那么）
+=
+(1).用CanListenerScrollView代替ScrollView
 -
+(2）.用CanListenerHorizontalScrollView代替HorizontalScrollView
+-
+(3）.用CanListenerNestScrollView代替NestScrollView
+-
+
+<br>
+5.跳转到特定页面，详细请查看SelectItemActivity
+
 ```
 dragToDetailLayout.setSelectionItem(num);
 ```
