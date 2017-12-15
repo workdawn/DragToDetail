@@ -68,7 +68,11 @@ DragToDetail
 (1.4).reboundDuration：拖动放手后布局得回弹或者跳转到下一页的持续时间，单位毫秒<br>
 <br>
 (1.5).reboundPercent：跳转到下一页所需要的拖动临界距离百分比，值越大说明需要拖动更多距离才能出发跳转下一页<br>
+<br>
+<br>
 2.两种使用方法
+<br>
+<br>
 (2.1).通过introLayout、detailLayout属性来配置相关页面，这种方式只支持两个页面，同时优先级更高（意味着如果同时配置了这两个页面属性和自定义布局子节点，那么控件会忽略布局子节点），这两个布局属性只有都配置才有效，只配置其中一个的话控件会认为没有该属性
 ```
         <com.workdawn.dragtodetaillayout.DragToDetailLayout
@@ -78,7 +82,7 @@ DragToDetail
            app:detailLayout="@layout/detail_layout"
            app:introLayout="@layout/intro_layout" />           
 ```
-2.2).通过自定义子布局节点，跟使用普通的LinearLayout一样
+(2.2).通过自定义子布局节点，跟使用普通的LinearLayout一样
 ```
         <com.workdawn.dragtodetaillayout.DragToDetailLayout
            android:id="@+id/dd_test"
@@ -137,7 +141,11 @@ android:orientation="horizontal"
 有关滑动监听重要说明（因为View的OnScrollChangeListener监听器是在Android的M版本后才加入的所以如果想进行相关全版本的滚动监听那么）
 =
 (1).用CanListenerScrollView代替ScrollView
+<br>
+<br>
 (2).用CanListenerHorizontalScrollView代替HorizontalScrollView
+<br>
+<br>
 (3).用CanListenerNestScrollView代替NestScrollView
 
 <br>
