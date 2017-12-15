@@ -1,11 +1,10 @@
-# DragToDetail
-###一个用以实现拖拉查看更多内容的自定义控件（可以实现如电商应用详情页面，拖拉查看商品详情描述），<br>继承自LinearLayout
-
+DragToDetail
+=
+一个用以实现拖拉查看更多内容的自定义控件（可以实现如电商应用详情页面，拖拉查看商品详情描述），<br>继承自LinearLayout
 -----------
 
-##特性
-
------------
+特性
+=
 ###1.支持大于两个子页面<br>
 ###2.支持竖向拖拉，支持横向拖拉<br>
 ###3.支持常见的ListView、ScrollView、HorizontalScrollView、NestedScrollView、RecyclerView、ViewPager、WebView等控件的组合使用（详情看下面效果图）<br>
@@ -39,8 +38,7 @@
 ------
 <br>
 
-#使用说明
-
+使用说明
 -------
 ###1.相关属性
 ```
@@ -88,19 +86,23 @@
    
        </com.workdawn.dragtodetaillayout.DragToDetailLayout>
 ```
-#重要说明：
-##1.因为该自定义控件继承自LinearLayout，所以控件的拖拽方向也同样跟随LinearLayout，也就是说如果你需要一个垂直的拖拉效果那么应该设置DragToDetail的<br>
+重要说明：
+=
+1.因为该自定义控件继承自LinearLayout，所以控件的拖拽方向也同样跟随LinearLayout，也就是说如果你需要一个垂直的拖拉效果那么应该设置DragToDetail的<br>
+-
 ```
 android:orientation="vertical"
 ````
 ##同时内部的子布局也要设置为垂直方向排列（详细使用方法可以下载demo查看）
-##2.如果需要一个水平方向的拖拉效果那么同理需要设置布局的方向
+2.如果需要一个水平方向的拖拉效果那么同理需要设置布局的方向
+-
 ```
 android:orientation="horizontal"
 ```
 ##当前水平方向的拖拽支持HorizontalScrollView、RecyclerView（布局方向水平）、ViewPager等的组合，其他垂直方向特性的控件如：ScrollView、ListView不支持，
 ##如果组合中有ViewPager + Fragment的话，要想成功的拖拽那么ViewPager得Fragment适配器必须继承自，这里给出的DragFragmentPagerAdapter或者DragFragmentStatePagerAdapter<br>（主要是为了能获取到当前Fragment里面的控件）,ScrollViewAndViewPager页面演示的就是这种情况
-###3.布局进入监听
+3.布局进入监听
+-
 ####如果想监听进入某个页面得事件可以通过设置EnterDetailLayoutListener监听器来实现
 ```
         dragToDetailLayout.setOnEnterDetailLayoutListener(new DragToDetailLayout.EnterDetailLayoutListener() {
@@ -111,7 +113,8 @@ android:orientation="horizontal"
         });
 ```
 ####通过该功能可以实现类似于懒加载的需求，当进入页面得时候才初始化相关布局控件，加载网络数据等等（可以看demo中的ScrollViewAndViewPager页面）
-###4.页面滚动监听，控件默认提供了对第一个页面的滚动监听，如需要监听其余页面可以通过控件提供的getTargetView(int id)方法获取到你想要监听滑动的控件来自行添加监听
+4.页面滚动监听，控件默认提供了对第一个页面的滚动监听，如需要监听其余页面可以通过控件提供的getTargetView(int id)方法获取到你想要监听滑动的控件来自行添加监听
+-
 ```
         dragToDetailLayout.setOnDragScrollListener(new DragToDetailLayout.DragScrollListener() {
             @Override
@@ -124,7 +127,8 @@ android:orientation="horizontal"
 ####(1).用CanListenerScrollView代替ScrollView
 ####(2）.用CanListenerHorizontalScrollView代替HorizontalScrollView
 ####(3）.用CanListenerNestScrollView代替NestScrollView
-###5.跳转到特定页面，详细请查看SelectItemActivity
+5.跳转到特定页面，详细请查看SelectItemActivity
+-
 ```
 dragToDetailLayout.setSelectionItem(num);
 ```
