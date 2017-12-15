@@ -110,7 +110,7 @@ android:orientation="vertical"
 android:orientation="horizontal"
 ```
 当前水平方向的拖拽支持HorizontalScrollView、RecyclerView（布局方向水平）、ViewPager等的组合，其他垂直方向特性的控件如：ScrollView、ListView不支持，
-如果组合中有ViewPager + Fragment的话，要想成功的拖拽那么ViewPager得Fragment适配器必须继承自，这里给出的DragFragmentPagerAdapter或者DragFragmentStatePagerAdapter<br>（主要是为了能获取到当前Fragment里面的控件）,ScrollViewAndViewPager页面演示的就是这种情况
+如果组合中有ViewPager + Fragment的话，要想成功的拖拽那么ViewPager得Fragment适配器必须继承自，这里给出的DragFragmentPagerAdapter或者DragFragmentStatePagerAdapter（主要是为了能获取到当前Fragment里面的控件）,ScrollViewAndViewPager页面演示的就是这种情况
 
 <br>
 
