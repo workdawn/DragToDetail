@@ -6,7 +6,6 @@ DragToDetail
 特性
 =
 ###1.支持大于两个子页面<br>
--
 ###2.支持竖向拖拉，支持横向拖拉<br>
 ###3.支持常见的ListView、ScrollView、HorizontalScrollView、NestedScrollView、RecyclerView、ViewPager、WebView等控件的组合使用（详情看下面效果图）<br>
 ###4.支持页面进入监听、支持滚动监听（仅仅监听第一个页面，详细说明请看使用介绍）<br>
@@ -14,8 +13,7 @@ DragToDetail
 ###6.更多特性<br>
 <br>
 
-###1.效果图1
--
+1.效果图1
 <br>
 ![DragToDetail](https://github.com/workdawn/DragToDetail/blob/master/gif/1.gif)
 
