@@ -15,11 +15,13 @@ DragToDetail
 
 1.效果图1
 <br>
+<br>
 ![DragToDetail](https://github.com/workdawn/DragToDetail/blob/master/gif/1.gif)
 
 ---------
 
 2.效果图2
+<br>
 <br>
 ![DragToDetail](https://github.com/workdawn/DragToDetail/blob/master/gif/4.gif)
 
@@ -27,11 +29,13 @@ DragToDetail
 
 3.效果图3
 <br>
+<br>
 ![DragToDetail](https://github.com/workdawn/DragToDetail/blob/master/gif/2.gif)
 
 ---------
 
 4.效果图4
+<br>
 <br>
 ![DragToDetail](https://github.com/workdawn/DragToDetail/blob/master/gif/3.gif)
 
@@ -56,10 +60,14 @@ DragToDetail
        </declare-styleable>
 ```
 (1.1).dragDamp：拖拽阻尼系数，表示拖拉布局的阻力大小（0.0f - 1.0f）之间，越小阻力越小，说明越容易拖拽<br>
+<br>
 (1.2).introLayout：以方法一（详情请看使用DragToDetail的两种方法）使用控件时候的第一页布局文件引用，它表示一个layout文件<br>
+<br>
 (1.3).detailLayout：以方法一（详情请看使用DragToDetail的两种方法）使用控件时候的第二页布局文件引用，它表示一个layout文件<br>
+<br>
 (1.4).reboundDuration：拖动放手后布局得回弹或者跳转到下一页的持续时间，单位毫秒<br>
-(5).reboundPercent：跳转到下一页所需要的拖动临界距离百分比，值越大说明需要拖动更多距离才能出发跳转下一页<br>
+<br>
+(1.5).reboundPercent：跳转到下一页所需要的拖动临界距离百分比，值越大说明需要拖动更多距离才能出发跳转下一页<br>
 2.两种使用方法
 (2.1).通过introLayout、detailLayout属性来配置相关页面，这种方式只支持两个页面，同时优先级更高（意味着如果同时配置了这两个页面属性和自定义布局子节点，那么控件会忽略布局子节点），这两个布局属性只有都配置才有效，只配置其中一个的话控件会认为没有该属性
 ```
