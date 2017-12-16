@@ -30,18 +30,20 @@ import android.widget.ListAdapter;
 import android.widget.ScrollView;
 
 /**
- * 拖动查看详情页面layout
+ * 一个向上或者向右拖拽查看更多详情的自定义控件，支持2个以上子页面，支持竖向和横向拖拉
  * 用于实现类似淘宝、京东等电商app拖动查看详情需求
  * 有如下两种使用方法
  *  1.<DragToDetailLayout
- app:introLayout="@layout/product_intro"
- app:detailLayout="@layout/product_detail"/>
+        app:introLayout="@layout/product_intro"
+        app:detailLayout="@layout/product_detail"/>
  这种使用方法只能设置两个页面，introLayout标识第一个页面布局，detailLayout标识第二个页面布局
- 2.<DragToDetailLayout>
- ....
- <DragToDetailLayout/>
+    2.<DragToDetailLayout>
+        ....
+      <DragToDetailLayout/>
  方法2的优先级更高，也就是说如果在容器节点下面手动添加了子节点，那么就会忽略属性上配置的两个页面
  * Created by Administrator on 2017/12/12.
+ * email:2008miaowe@163.com
+ * @author workdawn
  */
 public class DragToDetailLayout extends LinearLayout {
 
@@ -59,6 +61,7 @@ public class DragToDetailLayout extends LinearLayout {
     private SparseArray<View> mViews;
     private EnterDetailLayoutListener mEnterDetailLayoutListener;
     private DragScrollListener mDragScrollListener;
+    private OnDragListener mOnDragListener;
     private VelocityTracker mVelocityTracker;
     private float mTouchSlop;
     private int mMaxFlingVelocity;
@@ -515,6 +518,9 @@ public class DragToDetailLayout extends LinearLayout {
                     break;
             }
             scrollTo((int)(scrollToX * mDragDamp), (int)(scrollToY * mDragDamp));
+            if(mOnDragListener != null){
+                mOnDragListener.onDrag(currentTargetView, (int)(scrollToY * mDragDamp), (int)(scrollToX * mDragDamp));
+            }
         }
     }
 
@@ -877,8 +883,12 @@ public class DragToDetailLayout extends LinearLayout {
         setInternalScrollChangedListener(currentTargetView);
     }
 
+    public void setOnDragListener(OnDragListener onDragListener){
+        this.mOnDragListener = onDragListener;
+    }
+
     /**
-     * 进入某个详情layout的监听
+     * 进入某个详情layout的监听，可以通过该监听来实现特定页面的数据懒加载功能
      */
     public interface EnterDetailLayoutListener{
         /**
@@ -905,5 +915,19 @@ public class DragToDetailLayout extends LinearLayout {
          * @param distanceX 水平方向滑动距离
          */
         void onScrollChanged(View v, float distanceY, float distanceX);
+    }
+
+    /**
+     * 拖拽监听
+     * 通过设置该监听器可以对拖拽过程进行监听来实现特定需求
+     */
+    public interface OnDragListener{
+        /**
+         * 拖拽监听回调方法
+         * @param dragView 当前拖拽控件
+         * @param distanceY 垂直拖拽距离
+         * @param distanceX 水平拖拽距离
+         */
+        void onDrag(View dragView, float distanceY, float distanceX);
     }
 }
