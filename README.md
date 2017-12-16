@@ -59,21 +59,21 @@ DragToDetail
            <attr name="reboundPercent" format="float"/>
        </declare-styleable>
 ```
-(1.1).dragDamp：拖拽阻尼系数，表示拖拉布局的阻力大小（0.0f - 1.0f）之间，越小阻力越小，说明越容易拖拽<br>
+（1.1）.dragDamp：拖拽阻尼系数，表示拖拉布局的阻力大小（0.0f - 1.0f）之间，越小阻力越小，说明越容易拖拽<br>
 <br>
-(1.2).introLayout：以方法一（详情请看使用DragToDetail的两种方法）使用控件时候的第一页布局文件引用，它表示一个layout文件<br>
+（1.2）.introLayout：以方法一（详情请看使用DragToDetail的两种方法）使用控件时候的第一页布局文件引用，它表示一个layout文件<br>
 <br>
-(1.3).detailLayout：以方法一（详情请看使用DragToDetail的两种方法）使用控件时候的第二页布局文件引用，它表示一个layout文件<br>
+（1.3）.detailLayout：以方法一（详情请看使用DragToDetail的两种方法）使用控件时候的第二页布局文件引用，它表示一个layout文件<br>
 <br>
-(1.4).reboundDuration：拖动放手后布局得回弹或者跳转到下一页的持续时间，单位毫秒<br>
+（1.4）.reboundDuration：拖动放手后布局得回弹或者跳转到下一页的持续时间，单位毫秒<br>
 <br>
-(1.5).reboundPercent：跳转到下一页所需要的拖动临界距离百分比，值越大说明需要拖动更多距离才能出发跳转下一页<br>
+（1.5）.reboundPercent：跳转到下一页所需要的拖动临界距离百分比，值越大说明需要拖动更多距离才能出发跳转下一页<br>
 <br>
 <br>
 2.两种使用方法
 <br>
 <br>
-(2.1).通过introLayout、detailLayout属性来配置相关页面，这种方式只支持两个页面，同时优先级更高（意味着如果同时配置了这两个页面属性和自定义布局子节点，那么控件会忽略布局子节点），这两个布局属性只有都配置才有效，只配置其中一个的话控件会认为没有该属性
+（2.1）.通过introLayout、detailLayout属性来配置相关页面，这种方式只支持两个页面，同时优先级更高（意味着如果同时配置了这两个页面属性和自定义布局子节点，那么控件会忽略布局子节点），这两个布局属性只有都配置才有效，只配置其中一个的话控件会认为没有该属性
 ```
         <com.workdawn.dragtodetaillayout.DragToDetailLayout
            android:layout_width="match_parent"
@@ -82,7 +82,7 @@ DragToDetail
            app:detailLayout="@layout/detail_layout"
            app:introLayout="@layout/intro_layout" />           
 ```
-(2.2).通过自定义子布局节点，跟使用普通的LinearLayout一样
+（2.2）.通过自定义子布局节点，跟使用普通的LinearLayout一样
 ```
         <com.workdawn.dragtodetaillayout.DragToDetailLayout
            android:id="@+id/dd_test"
@@ -100,12 +100,12 @@ DragToDetail
 ```
 重要说明：
 =
-1.因为该自定义控件继承自LinearLayout，所以控件的拖拽方向也同样跟随LinearLayout，也就是说如果你需要一个垂直的拖拉效果那么应该设置DragToDetail的<br>
+重要说明（1）.因为该自定义控件继承自LinearLayout，所以控件的拖拽方向也同样跟随LinearLayout，也就是说如果你需要一个垂直的拖拉效果那么应该设置DragToDetail的<br>
 ```
 android:orientation="vertical"
 ````
 同时内部的子布局也要设置为垂直方向排列（详细使用方法可以下载demo查看）<br>
-2.如果需要一个水平方向的拖拉效果那么同理需要设置布局的方向
+重要说明（2）.如果需要一个水平方向的拖拉效果那么同理需要设置布局的方向
 ```
 android:orientation="horizontal"
 ```
@@ -140,17 +140,17 @@ android:orientation="horizontal"
 ```
 有关滑动监听重要说明（因为View的OnScrollChangeListener监听器是在Android的M版本后才加入的所以如果想进行相关全版本的滚动监听那么）
 =
-(1).用CanListenerScrollView代替ScrollView
+（1）.用CanListenerScrollView代替ScrollView
 <br>
 <br>
-(2).用CanListenerHorizontalScrollView代替HorizontalScrollView
+（2）.用CanListenerHorizontalScrollView代替HorizontalScrollView
 <br>
 <br>
-(3).用CanListenerNestScrollView代替NestScrollView
+（3）.用CanListenerNestScrollView代替NestScrollView
 
 <br>
 5.跳转到特定页面，详细请查看SelectItemActivity
 
 ```
-dragToDetailLayout.setSelectionItem(num);
+dragToDetailLayout.setSelectionItem(index);
 ```
