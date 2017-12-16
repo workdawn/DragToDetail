@@ -27,6 +27,8 @@ public class ScrollViewAndViewPager extends AppCompatActivity {
 
     ViewPagerFragmentAdapter viewPagerFragmentAdapter;
 
+    boolean loaded;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,24 +41,27 @@ public class ScrollViewAndViewPager extends AppCompatActivity {
             @Override
             public void onEnter(int id) {
                 if(id == 2){
-                    //数据放在进入页面的时候加载，可以提高性能，当然完全可以把这端加载数据代码提出去
-                    tabLayout = (TabLayout) findViewById(R.id.tablayout);
-                    viewPager = (ViewPager) findViewById(R.id.viewpager);
-                    fragmentTitles.add("TAB1");
-                    fragmentTitles.add("TAB2");
-                    fragmentTitles.add("TAB3");
+                    if(!loaded){
+                        //数据放在进入页面的时候加载，可以提高性能，当然完全可以把这端加载数据代码提出去
+                        tabLayout = (TabLayout) findViewById(R.id.tablayout);
+                        viewPager = (ViewPager) findViewById(R.id.viewpager);
+                        fragmentTitles.add("TAB1");
+                        fragmentTitles.add("TAB2");
+                        fragmentTitles.add("TAB3");
 
-                    tabLayout.addTab(tabLayout.newTab().setText(fragmentTitles.get(0)));
-                    tabLayout.addTab(tabLayout.newTab().setText(fragmentTitles.get(1)));
-                    tabLayout.addTab(tabLayout.newTab().setText(fragmentTitles.get(2)));
+                        tabLayout.addTab(tabLayout.newTab().setText(fragmentTitles.get(0)));
+                        tabLayout.addTab(tabLayout.newTab().setText(fragmentTitles.get(1)));
+                        tabLayout.addTab(tabLayout.newTab().setText(fragmentTitles.get(2)));
 
-                    fragmentList.add(DragFragment.newInstance());
-                    fragmentList.add(DragFragment1.newInstance());
-                    fragmentList.add(DragFragment2.newInstance());
+                        fragmentList.add(DragFragment.newInstance());
+                        fragmentList.add(DragFragment1.newInstance());
+                        fragmentList.add(DragFragment2.newInstance());
 
-                    viewPagerFragmentAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager(), fragmentList, fragmentTitles);
-                    viewPager.setAdapter(viewPagerFragmentAdapter);
-                    tabLayout.setupWithViewPager(viewPager);
+                        viewPagerFragmentAdapter = new ViewPagerFragmentAdapter(getSupportFragmentManager(), fragmentList, fragmentTitles);
+                        viewPager.setAdapter(viewPagerFragmentAdapter);
+                        tabLayout.setupWithViewPager(viewPager);
+                        loaded = true;
+                    }
                 }
             }
         });
