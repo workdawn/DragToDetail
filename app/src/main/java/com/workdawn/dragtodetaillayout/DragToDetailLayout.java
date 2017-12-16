@@ -165,7 +165,6 @@ public class DragToDetailLayout extends LinearLayout {
                 currentTargetView = getChildAt(0);
             }
         }
-        setInternalScrollChangedListener(currentTargetView);
     }
 
     private void setInternalScrollChangedListener(View view){
@@ -873,6 +872,7 @@ public class DragToDetailLayout extends LinearLayout {
 
     public void setOnDragScrollListener(DragScrollListener dragScrollListener){
         this.mDragScrollListener = dragScrollListener;
+        setInternalScrollChangedListener(currentTargetView);
     }
 
     /**
