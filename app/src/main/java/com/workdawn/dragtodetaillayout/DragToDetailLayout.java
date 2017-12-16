@@ -298,14 +298,14 @@ public class DragToDetailLayout extends LinearLayout {
         int direction;
         if(orientation == LinearLayout.VERTICAL){
             direction = (int) distanceY;
-            return !((currentTargetViewIndex == 1 && !ViewCompat.canScrollVertically(currentTargetView, -1))
-                    || (currentTargetViewIndex == mViews.size() && !ViewCompat.canScrollVertically(currentTargetView, 1)))
+            return !((currentTargetViewIndex == 1 && !canScrollVertically(currentTargetView, -1, event))
+                    || (currentTargetViewIndex == mViews.size() && !canScrollVertically(currentTargetView, 1, event)))
                     && Math.abs(distanceY) > mTouchSlop && Math.abs(distanceY) > Math.abs(distanceX)
                     && !canScrollVertically(currentTargetView, -direction, event);
         } else {
             direction = (int) distanceX;
-            return !((currentTargetViewIndex == 1 && !ViewCompat.canScrollHorizontally(currentTargetView, -1))
-                    || (currentTargetViewIndex == mViews.size() && !ViewCompat.canScrollHorizontally(currentTargetView, 1)))
+            return !((currentTargetViewIndex == 1 && !canScrollHorizontally(currentTargetView, -1, event))
+                    || (currentTargetViewIndex == mViews.size() && !canScrollHorizontally(currentTargetView, 1, event)))
                     && Math.abs(distanceX) > mTouchSlop && Math.abs(distanceX) > Math.abs(distanceY)
                     && !canScrollHorizontally(currentTargetView, -direction, event);
         }
@@ -382,7 +382,7 @@ public class DragToDetailLayout extends LinearLayout {
             } else if(viewPager.getAdapter() instanceof DragFragmentStatePagerAdapter){
                 currentPagerView = ((DragFragmentStatePagerAdapter) viewPager.getAdapter()).getCurrentView();
             }
-            return currentPagerView != null && ViewCompat.canScrollVertically(currentPagerView, direction);
+            return currentPagerView != null && canScrollVertically(currentPagerView, direction, event);
         } else if ((target instanceof AbsListView) ||
                 (target instanceof RecyclerView) ||
                 (target instanceof ScrollView) ||
@@ -394,7 +394,7 @@ public class DragToDetailLayout extends LinearLayout {
                 for (int i = 0; i < vg.getChildCount(); i++) {
                     View v = vg.getChildAt(i);
                     if(checkTouchRange(v, event)){
-                        return canScrollVertically(vg.getChildAt(i), direction, event);
+                        return canScrollVertically(v, direction, event);
                     }
                 }
             } else {

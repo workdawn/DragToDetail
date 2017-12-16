@@ -49,5 +49,12 @@
             android:onClick="listenerTest"
             android:text="进入页面监听和滚动监听" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
+            android:onClick="withViewPager"
+            android:text="组合ViewPager一起使用" />
+
     </LinearLayout>
 </ScrollView>

@@ -38,4 +38,8 @@ public class MainActivity extends AppCompatActivity {
     public void listenerTest(View view){
         startActivity(new Intent(this, DragListenerActivity.class));
     }
+
+    public void withViewPager(View view){
+        startActivity(new Intent(this, ScrollViewAndViewPager.class));
+    }
 }

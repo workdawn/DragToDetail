@@ -25,6 +25,7 @@
             android:name=".test.SelectItemActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".test.DragListenerActivity" />
+        <activity android:name=".test.ScrollViewAndViewPager" />
     </application>
 
 </manifest>
