@@ -8,7 +8,7 @@ DragToDetail
 1.支持大于两个子页面<br>
 2.支持竖向拖拉，支持横向拖拉<br>
 3.支持常见的ListView、ScrollView、HorizontalScrollView、NestedScrollView、RecyclerView、ViewPager、WebView等控件的组合使用（详情看下面效果图）<br>
-4.支持页面进入监听、支持滚动监听（仅仅监听第一个页面，详细说明请看使用介绍）<br>
+4.支持页面进入监听、支持滚动监听（仅监听第一个页面，详细请看使用说明 4）、支持拖拽监听<br>
 5.支持跳转到指定页面<br>
 6.更多特性<br>
 <br>
@@ -73,7 +73,7 @@ DragToDetail
 2.两种使用方法
 <br>
 <br>
-（2.1）.通过introLayout、detailLayout属性来配置相关页面，这种方式只支持两个页面，同时优先级更高（意味着如果同时配置了这两个页面属性和自定义布局子节点，那么控件会忽略布局子节点），这两个布局属性只有都配置才有效，只配置其中一个的话控件会认为没有该属性
+（2.1）.通过introLayout、detailLayout属性来配置相关页面，这种方式只支持两个页面，优先级比使用自定义节点要低（意味着如果同时配置了这两个页面属性和自定义布局子节点，那么控件会忽略这两个布局属性），这两个布局属性只有都配置才有效，只配置其中一个的话控件会认为没有该属性
 ```
         <com.workdawn.dragtodetaillayout.DragToDetailLayout
            android:layout_width="match_parent"
@@ -141,9 +141,21 @@ DragToDetail
 <br>
 <br>
 （3）.用CanListenerNestScrollView代替NestScrollView
-
 <br>
-5.跳转到特定页面，详细请查看SelectItemActivity
+
+5.拖拽监听<br>
+通过设置 `OnDragListener` 可以监听布局得拖拽过程
+```
+        dragToDetailLayout.setOnDragListener(new DragToDetailLayout.OnDragListener() {
+            @Override
+            public void onDrag(View dragView, float distanceY, float distanceX) {
+                tv_scr_distance.setText("垂直方向拖拽距离 = " + distanceY);
+            }
+        });
+```
+<br>
+
+6.跳转到特定页面，详细请查看SelectItemActivity
 
 ```
 dragToDetailLayout.setSelectionItem(index);
