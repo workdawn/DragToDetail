@@ -100,13 +100,11 @@ DragToDetail
 ```
 重要说明：
 =
-重要说明（1）.因为该自定义控件继承自LinearLayout，所以控件的拖拽方向也同样跟随LinearLayout，也就是说如果你需要一个垂直的拖拉效果那么应该设置DragToDetail的<br>
-```
-android:orientation="vertical"
-````
-同时内部的子布局也要设置为垂直方向排列（详细使用方法可以下载demo查看）<br>
-重要说明（2）.如果需要一个水平方向的拖拉效果那么同理需要设置布局的方向为 `android:orientation="horizontal"` ，同时内部的布局方向也为 `android:orientation="horizontal"` ，当前水平方向的拖拽支持HorizontalScrollView、RecyclerView（布局方向水平）、ViewPager等的组合，其他垂直方向特性的控件如：ScrollView、ListView不支持<br>
-重要说明（3）.如果组合中有ViewPager + Fragment的话，要想成功的拖拽那么ViewPager中的Fragment适配器必须继承自这里给出的DragFragmentPagerAdapter或者DragFragmentStatePagerAdapter（主要是为了能获取到当前Fragment里面的控件）,ScrollViewAndViewPager页面演示的就是这种情况
+说明（1）.因为该自定义控件继承自LinearLayout，所以控件的拖拽方向也同样跟随LinearLayout，也就是说如果你需要一个垂直的拖拉效果那么应该设置DragToDetail的 `android:orientation="horizontal"` 同时内部的子布局也要设置为垂直方向排列（详细使用方法可以下载demo查看）<br>
+<br>
+说明（2）.如果需要一个水平方向的拖拉效果那么同理需要设置布局的方向为 `android:orientation="horizontal"` ，同时内部的布局方向也为 `android:orientation="horizontal"` ，当前水平方向的拖拽支持HorizontalScrollView、RecyclerView（布局方向水平）、ViewPager等的组合，其他垂直方向特性的控件如：ScrollView、ListView不支持<br>
+<br>
+说明（3）.如果组合中有ViewPager + Fragment的话，要想成功的拖拽那么ViewPager中的Fragment适配器必须继承自这里给出的DragFragmentPagerAdapter或者DragFragmentStatePagerAdapter（主要是为了能获取到当前Fragment里面的控件）,ScrollViewAndViewPager页面演示的就是这种情况
 
 <br>
 
