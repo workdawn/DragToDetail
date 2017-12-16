@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.webkit.WebView;
 import android.widget.AbsListView;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -350,7 +351,7 @@ public class DragToDetailLayout extends LinearLayout {
             }
             return layoutOrientation !=1 && ViewCompat.canScrollHorizontally(target, direction);
         } else {
-            if(target instanceof ViewGroup){
+            if((target instanceof ViewGroup) && ((ViewGroup) target).getChildCount() > 0){
                 ViewGroup vg = (ViewGroup) target;
                 for (int i = 0; i < vg.getChildCount(); i++) {
                     View v = vg.getChildAt(i);
@@ -386,10 +387,11 @@ public class DragToDetailLayout extends LinearLayout {
         } else if ((target instanceof AbsListView) ||
                 (target instanceof RecyclerView) ||
                 (target instanceof ScrollView) ||
-                (target instanceof NestedScrollView)){
+                (target instanceof NestedScrollView) ||
+                (target instanceof WebView)){
             return ViewCompat.canScrollVertically(target, direction);
         } else {
-            if(target instanceof ViewGroup){
+            if((target instanceof ViewGroup) && ((ViewGroup) target).getChildCount() > 0){
                 ViewGroup vg = (ViewGroup) target;
                 for (int i = 0; i < vg.getChildCount(); i++) {
                     View v = vg.getChildAt(i);
