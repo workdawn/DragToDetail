@@ -49,13 +49,13 @@ DragToDetail
         <declare-styleable name="DragToDetailLayout">
            <!-- 拖拽阻尼系数 -->
            <attr name="dragDamp" format="float"/>
-           <!-- 上部介绍页面布局-->
+           <!-- 上部或左部介绍页面布局-->
            <attr name="introLayout" format="reference"/>
-           <!-- 下部部详情页面布局-->
+           <!-- 下部或右部详情页面布局-->
            <attr name="detailLayout" format="reference"/>
            <!-- 回弹滚动持续时间 单位：毫秒 -->
            <attr name="reboundDuration" format="integer"/>
-           <!-- 回弹比率，用于确定拖动多少距离出发显示下一页面 -->
+           <!-- 回弹临界比率，用于确定拖动多少距离跳转到下一页面 -->
            <attr name="reboundPercent" format="float"/>
        </declare-styleable>
 ```
