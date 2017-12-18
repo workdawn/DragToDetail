@@ -298,7 +298,6 @@ public class DragToDetailLayout extends LinearLayout {
         float currentTmpY = event.getY();
         float distanceY = currentTmpY - initY;
         float distanceX = currentTmpX - initX;
-        findCurrentTargetView();
         int direction;
         if(orientation == LinearLayout.VERTICAL){
             direction = (int) distanceY;
@@ -335,14 +334,6 @@ public class DragToDetailLayout extends LinearLayout {
             }
         }
         return false;
-    }
-
-    /**
-     * 寻找当前目前页面
-     * @return 目标页面
-     */
-    private View findCurrentTargetView(){
-        return currentTargetView;
     }
 
     /**
