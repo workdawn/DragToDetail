@@ -57,6 +57,7 @@
             android:text="第一个SCR8" />
 
         <Button
+            android:id="@+id/btn_drag_tip"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@android:color/darker_gray"

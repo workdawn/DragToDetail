@@ -540,6 +540,24 @@ public class DragToDetailLayout extends LinearLayout {
             scrollTo((int)(scrollToX * mDragDamp), (int)(scrollToY * mDragDamp));
             if(mOnDragListener != null){
                 mOnDragListener.onDrag(currentTargetView, (int)(scrollToY * mDragDamp), (int)(scrollToX * mDragDamp));
+                switch (orientation) {
+                    case HORIZONTAL:
+                        float baseWidth = currentTargetView.getMeasuredWidth() * mReboundPercent;
+                        int accumulateWidth = accumulateViewWidth();
+                        int differenceWidth = getScrollX() - accumulateWidth;
+                        if(Math.abs(differenceWidth) > baseWidth){
+                            mOnDragListener.onDragComplete(currentTargetView);
+                        }
+                        break;
+                    case VERTICAL:
+                        float baseHeight = currentTargetView.getMeasuredHeight() * mReboundPercent;
+                        int accumulateHeight = accumulateViewHeight();
+                        int difference = getScrollY() - accumulateHeight;
+                        if(Math.abs(difference) > baseHeight){
+                            mOnDragListener.onDragComplete(currentTargetView);
+                        }
+                        break;
+                }
             }
         }
     }
@@ -949,5 +967,12 @@ public class DragToDetailLayout extends LinearLayout {
          * @param distanceX 水平拖拽距离
          */
         void onDrag(View dragView, float distanceY, float distanceX);
+
+        /**
+         * 当拖拽距离大于临界距离的时候回调该方法，表示拖拽已经完成
+         * 这时候松手会调整到下一个页面，或者上一个页面
+         * @param dragView 当前拖拽控件
+         */
+        void onDragComplete(View dragView);
     }
 }

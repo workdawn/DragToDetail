@@ -154,6 +154,11 @@ DragToDetail
             public void onDrag(View dragView, float distanceY, float distanceX) {
                 tv_scr_distance.setText("垂直方向拖拽距离 = " + distanceY);
             }
+			
+			@Override
+            public void onDragComplete(View dragView) {
+                btn_drag_tip.setText("松手查看更多详情");
+            }
         });
 ```
 <br>
