@@ -59,8 +59,8 @@ public class DragToDetailLayout extends LinearLayout {
     private LayoutInflater mInflater;
     /**布局集合*/
     private SparseArray<View> mViews;
-    private EnterDetailLayoutListener mEnterDetailLayoutListener;
-    private DragScrollListener mDragScrollListener;
+    private OnEnterDetailLayoutListener mEnterDetailLayoutListener;
+    private OnDragScrollListener mDragScrollListener;
     private OnDragListener mOnDragListener;
     private VelocityTracker mVelocityTracker;
     private float mTouchSlop;
@@ -912,11 +912,11 @@ public class DragToDetailLayout extends LinearLayout {
         }
     }
 
-    public void setOnEnterDetailLayoutListener(EnterDetailLayoutListener enterDetailLayoutListener){
+    public void setOnEnterDetailLayoutListener(OnEnterDetailLayoutListener enterDetailLayoutListener){
         this.mEnterDetailLayoutListener = enterDetailLayoutListener;
     }
 
-    public void setOnDragScrollListener(DragScrollListener dragScrollListener){
+    public void setOnDragScrollListener(OnDragScrollListener dragScrollListener){
         this.mDragScrollListener = dragScrollListener;
         setInternalScrollChangedListener(currentTargetView);
     }
@@ -928,7 +928,7 @@ public class DragToDetailLayout extends LinearLayout {
     /**
      * 进入某个详情layout的监听，可以通过该监听来实现特定页面的数据懒加载功能
      */
-    public interface EnterDetailLayoutListener{
+    public interface OnEnterDetailLayoutListener{
         /**
          * 当进入某个detailLayout的时候回调
          * @param id layout的id或者layout在DragToDetailLayout中的层级序号
@@ -945,7 +945,7 @@ public class DragToDetailLayout extends LinearLayout {
      * 可通过{@link DragToDetailLayout#getTargetView(int)}方法获取到相关页面view进行监听
      *
      */
-    public interface DragScrollListener{
+    public interface OnDragScrollListener{
         /**
          * 当布局滚动的时候回调
          * @param v 当前滚动的view

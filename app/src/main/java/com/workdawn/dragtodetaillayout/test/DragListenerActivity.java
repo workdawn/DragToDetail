@@ -22,14 +22,14 @@ public class DragListenerActivity extends AppCompatActivity {
         dragToDetailLayout = (DragToDetailLayout) findViewById(R.id.dd_test);
         tv_scr_distance = (TextView) findViewById(R.id.tv_scr_distance);
 
-        dragToDetailLayout.setOnEnterDetailLayoutListener(new DragToDetailLayout.EnterDetailLayoutListener() {
+        dragToDetailLayout.setOnEnterDetailLayoutListener(new DragToDetailLayout.OnEnterDetailLayoutListener() {
             @Override
             public void onEnter(int id) {
                 Toast.makeText(DragListenerActivity.this, "进入第 " + id + "页", Toast.LENGTH_LONG).show();
             }
         });
 
-        dragToDetailLayout.setOnDragScrollListener(new DragToDetailLayout.DragScrollListener() {
+        dragToDetailLayout.setOnDragScrollListener(new DragToDetailLayout.OnDragScrollListener() {
             @Override
             public void onScrollChanged(View v, float distanceY, float distanceX) {
                 tv_scr_distance.setText("垂直方向移动距离 = " + distanceY);

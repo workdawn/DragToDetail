@@ -37,7 +37,7 @@ public class ScrollViewAndViewPager extends AppCompatActivity {
 
         dragToDetailLayout = (DragToDetailLayout) findViewById(R.id.dd_test);
 
-        dragToDetailLayout.setOnEnterDetailLayoutListener(new DragToDetailLayout.EnterDetailLayoutListener() {
+        dragToDetailLayout.setOnEnterDetailLayoutListener(new DragToDetailLayout.OnEnterDetailLayoutListener() {
             @Override
             public void onEnter(int id) {
                 if(id == 2){
