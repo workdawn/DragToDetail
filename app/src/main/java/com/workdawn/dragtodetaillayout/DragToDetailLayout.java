@@ -308,7 +308,7 @@ public class DragToDetailLayout extends LinearLayout {
                     && !canScrollVertically(currentTargetView, -direction, event);
         } else {
             direction = (int) distanceX;
-            if((currentTargetView instanceof ViewPager) || checkTouchView(currentTargetView, event, 0)){
+            if(checkTouchView(currentTargetView, event, 0)){
                 return initX>=currentTmpX && !canScrollHorizontally(currentTargetView, -1, event)
                         && Math.abs(distanceX) > mTouchSlop && Math.abs(distanceX) > Math.abs(distanceY)
                         && !canScrollHorizontally(currentTargetView, -direction, event);
@@ -321,7 +321,9 @@ public class DragToDetailLayout extends LinearLayout {
     }
 
     private boolean checkTouchView(View view, MotionEvent event, int viewType){
-        if((view instanceof ViewGroup) && ((ViewGroup) view).getChildCount() > 0){
+        if(viewType == 0 && view instanceof ViewPager){
+            return true;
+        } else if((view instanceof ViewGroup) && ((ViewGroup) view).getChildCount() > 0){
             int count = ((ViewGroup) view).getChildCount();
             for(int i = 0; i < count; i++){
                 View childView = ((ViewGroup) view).getChildAt(i);
