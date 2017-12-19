@@ -14,6 +14,9 @@ DragToDetail
 7.更多特性<br>
 <br>
 
+部分功能效果图
+<br>
+
 1.效果图1
 <br>
 <br>
