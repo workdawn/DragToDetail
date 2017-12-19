@@ -41,6 +41,8 @@ DragToDetail
 ![DragToDetail](https://github.com/workdawn/DragToDetail/blob/master/gif/3.gif)
 
 ------
+
+更多效果请下载demo查看
 <br>
 
 使用说明
