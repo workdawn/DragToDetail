@@ -46,4 +46,8 @@ public class MainActivity extends AppCompatActivity {
     public void withWeb(View view){
         startActivity(new Intent(this, ScrollViewWebView.class));
     }
+
+    public void withViewPagerH(View view){
+        startActivity(new Intent(this, ViewPagerActivity_H.class));
+    }
 }

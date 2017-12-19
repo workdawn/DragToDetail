@@ -14,6 +14,7 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -308,6 +309,11 @@ public class DragToDetailLayout extends LinearLayout {
                     && !canScrollVertically(currentTargetView, -direction, event);
         } else {
             direction = (int) distanceX;
+            if(currentTargetView instanceof ViewPager){
+                return initX>=currentTmpX && !canScrollHorizontally(currentTargetView, -1, event)
+                        && Math.abs(distanceX) > mTouchSlop && Math.abs(distanceX) > Math.abs(distanceY)
+                        && !canScrollHorizontally(currentTargetView, -direction, event);
+            }
             return !((currentTargetViewIndex == 1 && !canScrollHorizontally(currentTargetView, -1, event))
                     || (currentTargetViewIndex == mViews.size() && !canScrollHorizontally(currentTargetView, 1, event)))
                     && Math.abs(distanceX) > mTouchSlop && Math.abs(distanceX) > Math.abs(distanceY)
@@ -336,10 +342,8 @@ public class DragToDetailLayout extends LinearLayout {
             //控件为viewpager的时候，是否可以滚动依据是否是最后一页
             ViewPager viewPager = (ViewPager) target;
             int currentPagerIndex = viewPager.getCurrentItem();
-            int pagerCount = viewPager.getChildCount();
-            if(currentPagerIndex == pagerCount - 1){
-                return true;
-            }
+            int pagerCount = viewPager.getChildCount() - 1;
+            return !(currentPagerIndex == pagerCount);
         } else if(target instanceof HorizontalScrollView){
             return ViewCompat.canScrollHorizontally(target, direction);
         } else if(target instanceof RecyclerView){

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.workdawn.dragtodetaillayout">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,6 +28,7 @@
         <activity android:name=".test.DragListenerActivity" />
         <activity android:name=".test.ScrollViewAndViewPager" />
         <activity android:name=".test.ScrollViewWebView" />
+        <activity android:name=".test.ViewPagerActivity_H" />
     </application>
 
 </manifest>
