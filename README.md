@@ -65,21 +65,21 @@ DragToDetail
            <attr name="reboundPercent" format="float"/>
        </declare-styleable>
 ```
-（1.1）.dragDamp：拖拽阻尼系数，表示拖拉布局的阻力大小（0.0f - 1.0f）之间，越小阻力越小，说明越容易拖拽<br>
+（1.1）.dragDamp：拖拽阻尼系数，表示拖拽布局的阻力大小（0.0f - 1.0f）之间，值越小阻力越小，越容易拖拽<br>
 <br>
-（1.2）.introLayout：以方法一（详情请看使用DragToDetail的两种方法）使用控件时候的第一页布局文件引用，它表示一个layout文件<br>
+（1.2）.introLayout：以方法一（详情请看使用DragToDetail的两种方法）使用控件时候的第一页布局文件引用，它表示一个layout文件引用<br>
 <br>
-（1.3）.detailLayout：以方法一（详情请看使用DragToDetail的两种方法）使用控件时候的第二页布局文件引用，它表示一个layout文件<br>
+（1.3）.detailLayout：以方法一（详情请看使用DragToDetail的两种方法）使用控件时候的第二页布局文件引用，它表示一个layout文件引用<br>
 <br>
-（1.4）.reboundDuration：拖动放手后布局得回弹或者跳转到下一页的持续时间，单位毫秒<br>
+（1.4）.reboundDuration：拖动放手后布局的回弹或者跳转到下一页的持续时间，单位毫秒<br>
 <br>
-（1.5）.reboundPercent：跳转到下一页所需要的拖动临界距离百分比，值越大说明需要拖动更多距离才能出发跳转下一页<br>
+（1.5）.reboundPercent：跳转到下一页所需要的拖动临界距离百分比，值越大说明需要拖动更多距离才能触发跳转下一页<br>
 <br>
 <br>
 2.两种使用方法
 <br>
 <br>
-（2.1）.通过introLayout、detailLayout属性来配置相关页面，这种方式只支持两个页面，优先级比使用自定义节点要低（意味着如果同时配置了这两个页面属性和自定义布局子节点，那么控件会忽略这两个布局属性），这两个布局属性只有都配置才有效，只配置其中一个的话控件会认为没有该属性
+（2.1）.通过introLayout、detailLayout属性来配置相关页面，这种方式只支持两个页面，优先级比使用自定义节点要低（意味着如果同时配置了这两个页面属性和自定义布局子节点，那么控件会忽略这两个布局属性），这两个布局属性只有都配置才有效，只配置其中一个，控件会忽略该属性
 ```
         <com.workdawn.dragtodetaillayout.DragToDetailLayout
            android:layout_width="match_parent"
@@ -110,16 +110,16 @@ DragToDetail
 <br>
 说明（2）.如果需要一个水平方向的拖拉效果那么同理需要设置布局的方向为 `android:orientation="horizontal"` ，同时内部的布局方向也为 `android:orientation="horizontal"` ，当前水平方向的拖拽支持HorizontalScrollView、RecyclerView（布局方向水平）、ViewPager等的组合，其他垂直方向特性的控件如：ScrollView、ListView不支持<br>
 <br>
-说明（3）.如果组合中有ViewPager + Fragment的话，要想成功的拖拽那么ViewPager中的Fragment适配器必须继承自这里给出的DragFragmentPagerAdapter或者DragFragmentStatePagerAdapter（主要是为了能获取到当前Fragment里面的控件）,ScrollViewAndViewPager页面演示的就是这种情况<br>
+说明（3）.如果组合中有ViewPager + Fragment的话，要想成功的拖拽那么ViewPager中的Fragment适配器必须继承自DragFragmentPagerAdapter或者DragFragmentStatePagerAdapter（原因，主要是为了能获取到当前Fragment里面的控件）,ScrollViewAndViewPager页面演示的就是这种情况<br>
 <br>
-说明（4）.目前如果想实现横向ViewPager滚动到最后一页进行拖拉，需要设置ViewPager的setOffscreenPageLimit()为需要显示的最大页数，ViewPagerActivity_H演示的就是这种情况
+说明（4）.如果想实现横向ViewPager滚动到最后一页进行拖拉，需要设置ViewPager的setOffscreenPageLimit()为需要显示的最大页数，详细可以查看ViewPagerActivity_H类
 
 <br>
 
 3.布局进入监听<br>
-如果想监听进入某个页面得事件可以通过设置EnterDetailLayoutListener监听器来实现
+如果想监听进入某个页面的事件可以通过设置OnEnterDetailLayoutListener监听器来实现，代码如下：
 ```
-        dragToDetailLayout.setOnEnterDetailLayoutListener(new DragToDetailLayout.EnterDetailLayoutListener() {
+        dragToDetailLayout.setOnEnterDetailLayoutListener(new DragToDetailLayout.OnEnterDetailLayoutListener() {
             @Override
             public void onEnter(int id) {
                 Toast.makeText(DragListenerActivity.this, "进入第 " + id + "页", Toast.LENGTH_LONG).show();
@@ -130,17 +130,17 @@ DragToDetail
 <br>
 
 4.页面滚动监听<br>
-控件默认提供了对第一个页面的滚动监听，如需要监听其余页面可以通过控件提供的getTargetView(int id)方法获取到你想要监听滑动的控件来自行添加监听
+控件默认提供了对第一个页面的滚动监听，如需要监听其余页面可以通过控件提供的getTargetView(int id)方法获取到你想要监听滑动的控件来自行添加
 
 ```
-        dragToDetailLayout.setOnDragScrollListener(new DragToDetailLayout.DragScrollListener() {
+        dragToDetailLayout.setOnDragScrollListener(new OnDragToDetailLayout.DragScrollListener() {
             @Override
             public void onScrollChanged(View v, float distanceY, float distanceX) {
                 tv_scr_distance.setText("垂直方向移动距离 = " + distanceY);
             }
         });
 ```
-有关滑动监听重要说明（因为View的OnScrollChangeListener监听器是在Android的M版本后才加入的所以如果想进行相关全版本的滚动监听那么）
+有关滑动监听重要说明（因为View的OnScrollChangeListener监听器是在Android的M版本后才加入的所以为了相关版本适配，那么）
 =
 （1）.用CanListenerScrollView代替ScrollView
 <br>
@@ -152,7 +152,7 @@ DragToDetail
 <br>
 
 5.拖拽监听<br>
-通过设置 `OnDragListener` 可以监听布局得拖拽过程
+通过设置 `OnDragListener` 可以监听布局拖拽过程，使用方法如下：
 ```
         dragToDetailLayout.setOnDragListener(new DragToDetailLayout.OnDragListener() {
             @Override
@@ -168,7 +168,7 @@ DragToDetail
 ```
 <br>
 
-6.跳转到特定页面，详细请查看SelectItemActivity
+6.跳转到特定页面，使用如下，更多详细请查看demo中的SelectItemActivity类
 
 ```
 dragToDetailLayout.setSelectionItem(index);
