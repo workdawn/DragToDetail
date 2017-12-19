@@ -14,7 +14,6 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -309,7 +308,7 @@ public class DragToDetailLayout extends LinearLayout {
                     && !canScrollVertically(currentTargetView, -direction, event);
         } else {
             direction = (int) distanceX;
-            if(currentTargetView instanceof ViewPager){
+            if((currentTargetView instanceof ViewPager) || checkTouchView(currentTargetView, event, 0)){
                 return initX>=currentTmpX && !canScrollHorizontally(currentTargetView, -1, event)
                         && Math.abs(distanceX) > mTouchSlop && Math.abs(distanceX) > Math.abs(distanceY)
                         && !canScrollHorizontally(currentTargetView, -direction, event);
@@ -319,6 +318,21 @@ public class DragToDetailLayout extends LinearLayout {
                     && Math.abs(distanceX) > mTouchSlop && Math.abs(distanceX) > Math.abs(distanceY)
                     && !canScrollHorizontally(currentTargetView, -direction, event);
         }
+    }
+
+    private boolean checkTouchView(View view, MotionEvent event, int viewType){
+        if((view instanceof ViewGroup) && ((ViewGroup) view).getChildCount() > 0){
+            int count = ((ViewGroup) view).getChildCount();
+            for(int i = 0; i < count; i++){
+                View childView = ((ViewGroup) view).getChildAt(i);
+                if(checkTouchRange(childView, event)){
+                    if(viewType == 0 && childView instanceof ViewPager){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     /**

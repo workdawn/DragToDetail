@@ -107,7 +107,7 @@ DragToDetail
 <br>
 说明（3）.如果组合中有ViewPager + Fragment的话，要想成功的拖拽那么ViewPager中的Fragment适配器必须继承自这里给出的DragFragmentPagerAdapter或者DragFragmentStatePagerAdapter（主要是为了能获取到当前Fragment里面的控件）,ScrollViewAndViewPager页面演示的就是这种情况<br>
 <br>
-说明（4）.目前如果想实现横向ViewPager滚动到最后一页进行拖拉，那么ViewPager需要是DragToDetail的一级子布局，同时需要设置ViewPager的setOffscreenPageLimit()为需要显示的最大页数，ViewPagerActivity_H演示的就是这种情况
+说明（4）.目前如果想实现横向ViewPager滚动到最后一页进行拖拉，需要设置ViewPager的setOffscreenPageLimit()为需要显示的最大页数，ViewPagerActivity_H演示的就是这种情况
 
 <br>
 
